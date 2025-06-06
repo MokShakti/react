@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="css/style.css">
+   <title>Lesson 01</title>
+
+   <style>
+   </style>
+</head>
+
+<body>
+   <div id="root"></div>
+
+   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+   <script type="text/babel">
+
+      //Умова: Задача 1. Вводиться кількість пасажирів. Вивести: 
+      // - скільки потрібно автобусів(кожен автобус на 20 місць);
+      // - скільки пляшок води(кожному пасажиру 2 пляшки);
+      // - скільки бутербродів(кожному пасажиру 3 бутерброди)
+
+      function Passengers() {
+         const [passengers, setPassengers] = React.useState(0)
+
+         const busses = 20
+         const waterBottles = 2
+         const sandwiches = 3
+
+         const totalBussesNeeded = Math.floor(passengers / busses)
+         const totalBottlesNeeded = passengers * waterBottles
+         const totalSandwichesNeeded = passengers * sandwiches
+
+         return (
+            <div className="list">
+               <h2>How many passengers?</h2>
+               <input className='listlabel' type="number" name="pax" value={passengers} onChange={(e) => setPassengers(e.target.value)} />
+               <h2>Supplies and busses needed:</h2>
+               <ul className='listitems'>
+                  <li>Busses: {totalBussesNeeded}</li>
+                  <li>Water bottles: {totalBottlesNeeded}</li>
+                  <li>Sandwiches: {totalSandwichesNeeded}</li>
+               </ul>
+            </div>
+         )
+      }
+
+      // -----------------------------------------
+
+      //Умова: Задача 2. Вводиться номер місяця. Автоматично виводити рекомендований одяг (зима – пальто, літо – шорти ….). Також автоматично виводити зображення з відповідним зображенням лісу (зима – ліс зі снігом, осінь – жовтий ліс, …).
+
+      function Month() {
+         const [mo, setMo] = React.useState(1)
+
+         const img = {
+            winter: `https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2023/08/shutterstock_166718984_Hero.jpg?w=1250&h=1120&crop=1`,
+            spring: `https://media.istockphoto.com/id/674833094/photo/cherry-tree-blossom.jpg?s=170667a&w=0&k=20&c=SX4E0WA7jfryjq6cgyEih3MaCPscDg8n2vEbo3UmGJc=`,
+            summer: `https://media.cntraveler.com/photos/5ca2606227413200230736ae/master/pass/Summer-Travel_GettyImages-1028278382.jpg`,
+            fall: `https://assets.artifactuprising.com/assets/campaigns/2022/Q3/09-26+Fall+Photo+Tips+Blog/Hero_Fall-Photo-Tips.jpg`
+         }
+
+         let clothes = ''
+         let imgSrc = ''
+
+         const month = Number(mo)
+
+         switch (month) {
+            case 12:
+            case 1:
+            case 2:
+               clothes = 'Winter clothes: coat, boots and underwear with fur'
+               imgSrc = img.winter
+               break;
+            case 3:
+            case 4:
+            case 5:
+               clothes = 'Spring clothes: light jacket'
+               imgSrc = img.spring
+               break;
+            case 6:
+            case 7:
+            case 8:
+               clothes = 'Summer clothes: shorts, t-shirt'
+               imgSrc = img.summer
+               break;
+            case 9:
+            case 10:
+            case 11:
+               clothes = 'Fall clothes: sweater, jacket'
+               imgSrc = img.fall
+               break;
+            default:
+               clothes = 'Invalid month number'
+               imgSrc = ''
+               break
+         }
+
+         return (
+            <div className="list">
+               <h2>Enter month number:</h2>
+               <input
+                  className='monthinput'
+                  type="number"
+                  min='1'
+                  value={mo}
+                  onChange={(e) => setMo(e.target.value)}
+               />
+               <p>You need: {clothes}</p>
+               {imgSrc && <img src={imgSrc} alt="Season" width='200px' />}
+            </div>
+         )
+      }
+
+      // -----------------------------------------
+
+      //Умова: Задача 3. Задано початок та кінець діапазону. При натисканні на кнопку випадковим чином генерувати значення з вказаного діапазону та відображати його.
+
+      function Range() {
+
+         const [beginning, setBeginning] = React.useState(1)
+         const [end, setEnd] = React.useState(1000)
+         const [result, setResult] = React.useState(null)
+
+         function generateRandom() {
+            const min = parseInt(beginning)
+            const max = parseInt(end)
+
+            if (min >= max) {
+               setResult(`Invalid range`)
+               return
+            }
+
+            const random = Math.floor(Math.random() * (max - min) + 1)
+            setResult(random)
+         }
+
+         return (
+            <div className="range">
+               <h2>Random Generator:</h2>
+               <p>Min Value</p>
+               <input
+                  className='rangeminmax'
+                  type="number"
+                  value={beginning}
+                  onChange={(e) => setBeginning(e.target.value)}
+               />
+               <p>Max Value</p>
+               <input
+                  className='rangeminmax'
+                  type="number"
+                  value={end}
+                  onChange={(e) => setEnd(e.target.value)}
+               />
+               <button onClick={generateRandom}>Generate</button>
+               {result !== null && <p>Result: {result}</p>}
+            </div>
+         )
+      }
+
+      // -----------------------------------------
+      //Умова: Задача 4. “Рахунок у банку”
+      // Вимоги:
+      // 1) Спочатку сума дорівнює 0грн.Змінити суму у гривнях можна або зарахуванням на рахунок, або зняттям.
+      // 2) Сума автоматично переводиться у долари та євро(фіксований курс задається у data).
+      // 3) можливість зарахувати суму(контролювати, щоб не була від’ємною).
+      // 4) можливість зняти(щоб не можна зняти більше ніж є на рахунку).
+      // 5) при виконанні зняття і зарахування коштів вираховувати 3 % від суми(відображати кількість відсотків автоматично).
+
+      // При зміні суми:
+      // - якщо було зняття, то суму відображати червоним;
+      // - якщо було зарахування, то суму відображати зеленим;
+      // - якщо сума валюти менша за 100 то відображати червоним кольором, інакше - зеленим.
+
+      function BankAccount() {
+         const [balance, setBalance] = React.useState(0)
+         const [input, setInput] = React.useState('')
+         const [lastAction, setLastAction] = React.useState(null)
+         const [fee, setFee] = React.useState(0)
+
+         const eurRate = 47.34
+         const usdRate = 41.44
+
+         const parsedInput = parseFloat(input)
+
+         function handleDeposit() {
+            if (parsedInput > 0) {
+               const commission = parsedInput * 0.03
+               const finalSum = parsedInput - commission
+               setBalance(prev => prev + finalSum)
+               setFee(commission)
+               setLastAction('deposit')
+            }
+         }
+
+         function handleWithdraw() {
+            if (parsedInput > 0 && parsedInput <= balance / 1.03) {
+               const commission = parsedInput * 0.03
+               const finalSum = parsedInput + commission
+               setBalance(prev => prev - finalSum)
+               setFee(commission)
+               setLastAction('withdraw')
+            }
+         }
+
+         const balanceStyle = {
+            color: lastAction === 'deposit' ? 'green' : lastAction === 'withdraw' ? 'red' : 'white'
+         }
+
+         const currencyStyle = amount => ({
+            color: amount < 100 ? 'red' : 'green'
+         })
+
+         return (
+            <div className="bank">
+               <h2>Bank Account:</h2>
+               <p style={balanceStyle}>Balance: {balance.toFixed(2)} UAH</p>
+
+               <p style={currencyStyle(balance / usdRate)}>USD: {(balance / usdRate).toFixed(2)} USD</p>
+
+               <p style={currencyStyle(balance / eurRate)}>EUR: {(balance / eurRate).toFixed(2)} EUR</p>
+
+
+
+               <input
+                  className='sum'
+                  type='number'
+                  min='0'
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+               />
+               <br />
+               <button onClick={handleDeposit}>Deposit</button>
+               <button onClick={handleWithdraw}>Withdraw</button>
+
+               <p>3% Commission: {fee.toFixed(2)} UAH</p>
+            </div>
+         )
+      }
+
+      // -----------------------------------------
+      //Умова: Задача 5. Додаток містить масив об’єктів (логін, пароль) --  існуючі логіни і паролі. Користувач вводить логін і пароль, а програма при натисненні на кнопку повідомляє чи може користувач бути авторизованим.
+
+      function Login() {
+
+         const [userLogin, setUserLogin] = React.useState('')
+         const [userPassword, setUserPassword] = React.useState('')
+         const [message, setMessage] = React.useState('')
+
+         const users = [
+            { login: 'Brodyaga', password: 'reacttoskladno' },
+            { login: 'Admin', password: '1234' },
+            { login: 'User', password: 'password' }
+         ]
+
+         function handleLogin() {
+            const found = users.find(
+               (user) => user.login === userLogin && user.password === userPassword
+            )
+
+            if (found) {
+               setMessage(`Welcome, ${userLogin}`)
+            } else {
+               setMessage(`Incorrect login or password entered`)
+            }
+         }
+
+         return (
+            <div className="login">
+               <h2>Login Page</h2>
+               <input
+                  type='text'
+                  placeholder='Login'
+                  value={userLogin}
+                  onChange={(e) => setUserLogin(e.target.value)}
+               />
+               <br />
+               <input
+                  type='password'
+                  placeholder='Password'
+                  value={userPassword}
+                  onChange={(e) => setUserPassword(e.target.value)}
+               />
+               <br />
+               <button onClick={handleLogin}>Login</button>
+               <p>{message}</p>
+            </div>
+         )
+      }
+
+      // -----------------------------------------
+
+      const Structure = () => {
+         return (
+            <div className="wrapper__container">
+               <div className='cnt'>
+                  <div className='blockone'>
+                     <h2 className='tasktitle'>Task 1</h2>
+                     <Passengers />
+                  </div>
+                  <div className='blocktwo'>
+                     <h2 className='tasktitle'>Task 2</h2>
+                     <Month />
+                  </div>
+                  <div className='blockthree'>
+                     <h2 className='tasktitle'>Task 3</h2>
+                     <Range />
+                  </div>
+                  <div className='blockfour'>
+                     <h2 className='tasktitle'>Task 4</h2>
+                     <BankAccount />
+                  </div>
+                  <div className='blockfive'>
+                     <h2 className='tasktitle'>Task 5</h2>
+                     <Login />
+                  </div>
+               </div>
+            </div>
+         )
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'))
+      root.render(React.createElement(Structure))
+
+   </script>
+</body>
+
+</html>
