@@ -1,13 +1,6 @@
 import './App.css'
 import "./App.scss";
 
-import { Routes, Route, Link } from 'react-router-dom';
-import Task1 from './components/Task1/MyForm';
-import Task2 from './components/Task2/AirplaneTickets';
-import Task3 from './components/Task3/Translator';
-import Task4 from './components/Task4/MarkedList';
-import Task5 from './components/Task5/WebSearch';
-import Task6 from './components/Task6/Kitchen';
 
 function App() {
    return (
