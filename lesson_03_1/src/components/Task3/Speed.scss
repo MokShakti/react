@@ -1,0 +1,48 @@
+.speed {
+   padding: 20px;
+   text-align: center;
+
+   input {
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      margin-bottom: 10px;
+      color: #000;
+   }
+
+   &.default {
+      background-color: lightgray;
+   }
+
+   &.orange {
+      background-color: orange;
+   }
+
+   &.green {
+      background-color: lightgreen;
+   }
+
+   &.red {
+      background-color: tomato;
+   }
+
+   .blinking {
+      font-weight: bold;
+      color: red;
+      animation: blink 1s infinite;
+   }
+
+   @keyframes blink {
+      0% {
+         opacity: 1;
+      }
+      50% {
+         opacity: 0;
+      }
+      100% {
+         opacity: 1;
+      }
+   }
+}
