@@ -1,0 +1,47 @@
+@use "sass:math";
+@use "./_variables.scss";
+@use "./_reset.scss";
+@use "./_mixins.scss" as vars;
+
+/* google fonts */
+@import url("https://fonts.googleapis.com/css?family=Montserrat+Alternates:regular,500,600,700,800&display=swap");
+/* null */
+
+body {
+   font-family: "Montserrat Alternates", sans-serif;
+   background: url(../img/bg.avif) center / cover fixed no-repeat;
+   color: var(--grey-99);
+}
+.wrapper {
+   min-height: 100%;
+   overflow: clip;
+   display: flex;
+   flex-direction: column;
+   // background-color: var(--bg);
+}
+.wrapper > main {
+   flex-grow: 1;
+}
+[class*="__container"] {
+   // max-width: toRem($containerWidth);
+   // padding-inline: toRem(math.div($containerPadding, 2));
+
+   max-width: vars.$containerWidth;
+   padding-inline: vars.$containerPadding;
+   margin-inline: auto;
+}
+.page {
+   width: 100%;
+}
+/* -------------HEADER-------------- */
+
+// ----------Lesson 12 design
+
+.wrapper {
+   // .wrapper__container
+   &__container {
+      padding-block: toRem(50);
+   }
+}
+
+// ------------------------------
