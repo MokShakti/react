@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "ROUGE ALLURE LEXTRAIT",
+    "price": 260,
+    "imageUrl": "/images/products/ROUGE-ALLURE-L-EXTRAIT.avif",
+    "category": "lipsticks"
+  },
+  {
+    "id": 2,
+    "name": "ROUGE ALLURE VELVET",
+    "price": 247,
+    "imageUrl": "/images/products/ROUGE-ALLURE-VELVET.avif",
+    "category": "lipsticks"
+  },
+  {
+    "id": 3,
+    "name": "ROUGE COCO FLASH",
+    "price": 230,
+    "imageUrl": "/images/products/ROUGE-COCO-FLASH.avif",
+    "category": "lipsticks"
+  },
+  {
+    "id": 4,
+    "name": "Chanel Chance",
+    "price": 400,
+    "imageUrl": "/images/products/chance.webp",
+    "category": "perfumes"
+  },
+  {
+    "id": 5,
+    "name": "Coco Noir",
+    "price": 650,
+    "imageUrl": "/images/products/coco-noir.webp",
+    "category": "perfumes"
+  },
+  {
+    "id": 6,
+    "name": "Gabrielle",
+    "price": 530,
+    "imageUrl": "/images/products/gabrielle.webp",
+    "category": "perfumes"
+  },
+  {
+    "id": 7,
+    "name": "Mademoiselle",
+    "price": 480,
+    "imageUrl": "/images/products/mademoiselle.avif",
+    "category": "perfumes"
+  },
+  {
+    "id": 8,
+    "name": "Chanel N°5",
+    "price": 800,
+    "imageUrl": "/images/products/n5.webp",
+    "category": "perfumes"
+  }
+]
