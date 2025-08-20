@@ -13,6 +13,6 @@ const API_BASE = 'https://backend-2-tqj2.onrender.com/api';
 
 export default {
    productsList: `${API_BASE}/products`,
-   getProductByCategory: (category) => `${API_BASE} /products/category / ${category}`,
-   getProductById: (id) => `${API_BASE} /products/${id}`
-}
+   getProductByCategory: (category) => `${API_BASE}/products/category/${encodeURIComponent(category)}`,
+   getProductById: (id) => `${API_BASE}/products/${encodeURIComponent(id)}`
+};
